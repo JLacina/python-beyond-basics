@@ -6,6 +6,7 @@ from math import sqrt
 LIMIT = 100_000
 
 def is_prime(number):
+    """Trial division: only need to check divisors up to sqrt(number). O(sqrt n) per number."""
     if number < 2:
         return False
     for i in range(2, int(sqrt(number)) + 1):

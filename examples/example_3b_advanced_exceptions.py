@@ -1,3 +1,10 @@
+"""
+Advanced exceptions: catching several types, else/finally, and custom exceptions.
+
+Try running it with: 4 (works), 0 (ZeroDivisionError), abc (ValueError).
+Note: the last line deliberately raises MyCustomError so you can see what a
+custom exception looks like in a traceback - the script always ends with that error.
+"""
 num = input("Number: ")
 
 try:
@@ -28,6 +35,7 @@ finally:
     print("This always happens")  # Runs after everything, even if there was an error
 
 
+# Custom exceptions: subclass Exception so callers can catch YOUR specific error
 class MyCustomError(Exception):
     pass
 

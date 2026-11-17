@@ -1,4 +1,11 @@
-# Getting user input
+"""
+Review of Python basics: input, conditionals, lists, imports, loops, functions and assertions.
+
+Run it and type a temperature when asked. Typing something that isn't a whole number
+(e.g. "warm") raises a ValueError - see example_3_exceptions.py for how to handle that.
+"""
+
+# Getting user input - input() always returns a str, so convert it with int()
 temp = int(input("What's the temperature? "))
 
 

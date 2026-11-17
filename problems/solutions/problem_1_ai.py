@@ -1,3 +1,12 @@
+"""
+Sum of all primes under 100,000 - three versions written with AI help.
+
+1. A Sieve of Eratosthenes (fast: O(n log log n))
+2. A rewrite "for a junior developer": simple trial division with clear names
+3. A compact bytearray sieve from a chat answer
+
+Compare them for readability vs speed - a common interview discussion.
+"""
 limit = 100_000
 
 # Sieve of Eratosthenes
@@ -51,6 +60,9 @@ if __name__ == "__main__":
 # Claude example from chat
 
 def sum_primes(limit):
+    """Sieve of Eratosthenes using a bytearray (1 = maybe prime, 0 = not prime)."""
+    if limit < 3:  # No primes below 2 - and sieve[1] below would be an IndexError
+        return 0
     sieve = bytearray([1]) * limit
     sieve[0] = sieve[1] = 0
     for i in range(2, int(limit**0.5) + 1):

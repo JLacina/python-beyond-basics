@@ -19,13 +19,13 @@ headers = {
 }
 
 # Make API request
-response = requests.get(URL, headers=headers)
+response = requests.get(URL, headers=headers, timeout=10)
 
 # Handle bad requests
 if response.status_code != 200:
     print(response.status_code)
     print(response.text)
-    sys.exit()
+    sys.exit(1)  # Non-zero exit code tells the shell/CI that something went wrong
 
 # Turn the response string into JSON data. Data is now lists/dicts
 data = json.loads(response.text)

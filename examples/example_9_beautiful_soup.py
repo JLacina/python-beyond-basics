@@ -2,11 +2,16 @@
 `pip install beautifulsoup4`
 
 Documentation: https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+
+BeautifulSoup turns an HTML string into a tree of elements you can search.
+- find_all(...) returns a list (empty if nothing matches)
+- find(...) returns the first match, or None if nothing matches -> check for None!
+Run it in a debugger (or add prints) to inspect the variables a-v.
 """
 import re
 from bs4 import BeautifulSoup
 
-with open("data/sample.html", "r") as file:
+with open("data/sample.html", "r", encoding="utf-8") as file:
     html_doc = file.read()
 
 soup = BeautifulSoup(html_doc, "html.parser")

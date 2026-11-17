@@ -1,3 +1,13 @@
+"""
+Dictionaries: key -> value lookups.
+
+Two common uses:
+1. As a map/lookup table (province code -> capital city)
+2. As a simple "object" describing one thing (a book with title/author/year)
+
+Lookups, inserts and `key in dict` are O(1) on average. `value in dict.values()` is O(n).
+"""
+
 # Dictionaries as maps
 canadian_capitals = {
     "AB": "Edmonton",
@@ -19,7 +29,7 @@ canadian_capitals.keys()    # ['AB', 'BC', ...]
 canadian_capitals.values()  # ['Edmonton', 'Victoria', ...]
 canadian_capitals.items()   # [('AB', 'Edmonton'), ('BC', 'Victoria'), ...]
 
-print(canadian_capitals["ON"])   # Get an item
+print(canadian_capitals["ON"])   # Get an item (KeyError if the key is missing)
 del canadian_capitals["AB"]      # Delete an item
 canadian_capitals["NU"] = "Bob"  # Update an item
 canadian_capitals["XX"] = "New"  # Add an item
@@ -53,10 +63,12 @@ book_3 = {"title": "1984", "author": "George Orwell", "published_year": 1949}
 
 books = [book_1, book_2, book_3]
 
+# Sorting a list of dicts: `key` is a function that returns the value to sort by
 def book_sort_key(book):
     return book["published_year"]
 
-books.sort(key=lambda b: b["title"])
+books.sort(key=book_sort_key)          # Sort by year, using a named function
+books.sort(key=lambda b: b["title"])   # Sort by title, using a lambda (an inline function)
 
 from pprint import pprint
 pprint(books)

@@ -28,13 +28,13 @@ query {
 """
 # Send the query in the right format for GraphQL
 data = {"query": query}
-response = requests.post(API_URL, headers=headers, json=data)
+response = requests.post(API_URL, headers=headers, json=data, timeout=10)
 
 # Handle bad requests (e.g. not authenticated)
 if response.status_code != 200:
     print(response.status_code)
     print(response.text)
-    sys.exit()
+    sys.exit(1)  # Non-zero exit code tells the shell/CI that something went wrong
 
 # Turn the response string into JSON data. Data is now a list of dictionaries representing repositories
 response = response.json()
@@ -42,7 +42,7 @@ response = response.json()
 # Handle bad queries (e.g. improperly formatted query string)
 if "errors" in response:
     print(response["errors"])
-    sys.exit()
+    sys.exit(1)  # Non-zero exit code tells the shell/CI that something went wrong
 
 data = response["data"]
 print(data)
